@@ -22,6 +22,16 @@ export default function Clientes() {
         }
     }, []);
 
+    const currencyFormatter = new Intl.NumberFormat([], {
+        style: 'currency',
+        currency: 'BRL'
+      })
+
+    const amountFormatter = new Intl.NumberFormat([], {
+    style: 'decimal',
+    currency: 'BRL'
+    })
+
     function clearFields() {
         setSKU('');
         setDescricao('');
@@ -34,17 +44,12 @@ export default function Clientes() {
 
         e.preventDefault();
 
-        const formatter = new Intl.NumberFormat([], {
-            style: 'currency',
-            currency: 'BRL'
-          })
-
         const produto = {
             id: storage.length + 1,
             sku,
             descricao,
             categoria,
-            valor: formatter.format(valor),
+            valor,
             qntd
         };
 
@@ -92,7 +97,7 @@ export default function Clientes() {
                         Valor unitário:<input type="number" value={valor} onChange={e => {setValor(e.target.value)}} required />
                     </label>
                     <label>
-                        Quantidade:<input type="number" min='1' value={qntd} onChange={e => {setQntd(e.target.value)}} required />
+                        Quantidade:<input type="number" min="1" pattern="\d+" value={qntd} onChange={e => {setQntd(e.target.value)}} required />
                     </label>
                     <input type="submit" value='Cadastrar'/>
                 </form>
@@ -104,8 +109,9 @@ export default function Clientes() {
                             <th>SKU</th>
                             <th>Descrição</th>
                             <th>Categoria</th>
-                            <th>Valor</th>
+                            <th>Valor Unitário</th>
                             <th>Quantidade</th>
+                            <th>Valor Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,8 +123,9 @@ export default function Clientes() {
                                     <td>{produto.sku}</td>
                                     <td>{produto.descricao}</td>
                                     <td>{produto.categoria}</td>
-                                    <td>{produto.valor}</td>
-                                    <td>{produto.qntd}</td>
+                                    <td>{currencyFormatter.format(produto.valor)}</td>
+                                    <td>{amountFormatter.format(produto.qntd)}</td>
+                                    <td>{currencyFormatter.format(produto.valor*produto.qntd)}</td>
                                 </tr>
                             ))}
                     </tbody>

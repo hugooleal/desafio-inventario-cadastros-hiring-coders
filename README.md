@@ -48,4 +48,4 @@ Os campos para preenchimento são:
 
 Para executar o projeto localmente em seu computador, baixe o código e execute o comando para iniciar o server: `yarn start`, `npm start`, ou `pnpm start`
 
-Se quiser visualizar o site online, [clique aqui]()!
+Se quiser visualizar o site online, [clique aqui](https://ecstatic-mccarthy-2ec9c1.netlify.app/)!

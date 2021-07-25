@@ -17,7 +17,7 @@ export default function Sidebar() {
 
     return (
         <div className="sidebar">
-            <Link id="home" on to="/" className="link" onClick={toggleActive}>Home</Link>
+            <Link id="home" on to="/" className="link active" onClick={toggleActive}>Home</Link>
             <Link id="clientes" on to="/clientes" className="link" onClick={toggleActive}>Clientes</Link>
             <Link id="produtos" on to="/produtos" className="link" onClick={toggleActive}>Produtos</Link>
         </div>
